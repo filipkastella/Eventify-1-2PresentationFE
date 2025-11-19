@@ -1,9 +1,16 @@
 # Nixpacks build configuration for Railway
+[variables]
+NODE_VERSION = "22.12.0"
+NPM_VERSION = "10"
+
 [phases.setup]
-nixPkgs = ['nodejs_22']
+nixPkgs = ['nodejs_22', 'npm-9_x']
+
+[phases.install]
+cmds = ['npm install']
 
 [phases.build]
-cmds = ['npm install', 'npm run build']
+cmds = ['npm run build']
 
 [phases.start]
 cmd = 'npm start'
