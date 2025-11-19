@@ -74,17 +74,13 @@ RUN echo 'server {' > /etc/nginx/conf.d/default.conf && \
 # This automatically detects the correct output folder structure
 COPY --from=build /app/dist/App/browser /usr/share/nginx/html
 
-# Create a non-root user for better security
-RUN addgroup -g 1001 -S nginx && \
-    adduser -S nginx -u 1001
-
-# Change ownership of nginx directories
+# Change ownership of nginx directories to the existing nginx user
 RUN chown -R nginx:nginx /var/cache/nginx && \
     chown -R nginx:nginx /var/log/nginx && \
     chown -R nginx:nginx /etc/nginx/conf.d && \
     chown -R nginx:nginx /usr/share/nginx/html
 
-# Switch to non-root user
+# Use the existing nginx user (no need to create a new one)
 USER nginx
 
 # Expose port 80 for Railway
