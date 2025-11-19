@@ -1,0 +1,6 @@
+{
+  "/api/*": {
+    "target": "https://eventify-1-2presentation-production.up.railway.app:8080",
+    "secure": true
+  }
+}
